@@ -72,7 +72,7 @@ class UI {
             button.disabled = true;
         }
         
-            button.addEventListener('click', (event) =>{
+            button.addEventListener("click", event =>{
                 event.target.innerText = "In Cart";
                 event.target.disabled = true;
                 // get product from products
@@ -88,7 +88,7 @@ class UI {
                 this.addCartItem(cartItem);
                 // show the cart
             });
-    });
+        });
     }
     setCartValues(cart){
         let tempTotal = 0;  
@@ -100,7 +100,7 @@ class UI {
         cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
         cartItems.innerText = itemsTotal;
     }
-    // this will allow us to see the items in the cart
+    // this will allow us to see the items in the cart and see the cart page appear too
     addCartItem(item) {
         const div = document.createElement("div");
         div.classList.add("cart-item");
@@ -114,8 +114,7 @@ class UI {
                         <i class="fas fa-chevron-up" data-id=${item.id}></i>
                         <p class="item-amount">data-id=${item.amount}</p>
                         <i class="fas fa-chevron-down" data-id=${item.id}></i>
-                    </div>
-        `;
+                    </div> `;
         cartContent.appendChild(div);
     }
     showCart() {
@@ -137,7 +136,7 @@ class Storage {
             return products.find(product => product.id === id);
     }
     static saveCart(cart) {
-        localStorage.setItem('cart', JSON.stringify(cart))
+        localStorage.setItem("cart", JSON.stringify(cart));
     }
 }
 
@@ -146,7 +145,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const products = new Products();
 
     // get all products
-    products.getProduct().then(products => {
+    products
+        .getProducts()
+        .then(products => {
         ui.displayProducts(products);
         Storage.saveProducts(products);
     })
