@@ -76,7 +76,7 @@ class UI {
                 event.target.innerText = "In Cart";
                 event.target.disabled = true;
                 // get product from products
-                let cartItem ={...Storage.getProduct(id), 
+                let cartItem = {...Storage.getProduct(id), 
                     amount: 1};
                 // add product to the cart
                 cart = [...cart, cartItem];
@@ -85,6 +85,7 @@ class UI {
                 // set cart values
                 this.setCartValues(cart);
                 // display cart item
+                this.addCartItem(cartItem);
                 // show the cart
             });
     });
@@ -98,6 +99,29 @@ class UI {
         });
         cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
         cartItems.innerText = itemsTotal;
+    }
+    // this will allow us to see the items in the cart
+    addCartItem(item) {
+        const div = document.createElement("div");
+        div.classList.add("cart-item");
+        div.innerHTML = ` <img src=${item.image} alt="product">
+                    <div>
+                        <h4>${item.title}</h4>
+                        <h5>$${item.price}</h5>
+                        <span class="remove-item" data-id=${item.id}>remove</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-chevron-up" data-id=${item.id}></i>
+                        <p class="item-amount">data-id=${item.amount}</p>
+                        <i class="fas fa-chevron-down" data-id=${item.id}></i>
+                    </div>
+        `;
+        cartContent.appendChild(div);
+    }
+    showCart() {
+        cartOverlay.classList.add("transparentBcg");
+        cartDOM.classList.add("showCart");
+        // this function will make it possible to see all items added to the cart
     }
 }
 // trust yourself that you are typing correctly
