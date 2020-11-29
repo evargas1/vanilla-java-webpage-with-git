@@ -101,6 +101,7 @@ class UI {
         cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
         cartItems.innerText = itemsTotal;
     }
+    // my error must be in this line because I cant open cart
     // this will allow us to see the items in the cart and see the cart page appear too
     addCartItem(item) {
         const div = document.createElement("div");
