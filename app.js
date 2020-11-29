@@ -77,7 +77,7 @@ class UI {
                 event.target.disabled = true;
                 // get product from products
                 let cartItem = {...Storage.getProduct(id), 
-                    amount: 1};
+                amount: 1};
                 // add product to the cart
                 cart = [...cart, cartItem];
                 // save cart in local storage
@@ -87,6 +87,7 @@ class UI {
                 // display cart item
                 this.addCartItem(cartItem);
                 // show the cart
+                this.showCart();
             });
         });
     }
@@ -122,6 +123,7 @@ class UI {
         cartDOM.classList.add("showCart");
         // this function will make it possible to see all items added to the cart
     }
+    setupAPP() {}
 }
 // trust yourself that you are typing correctly
 // local storage
@@ -143,6 +145,8 @@ class Storage {
 document.addEventListener("DOMContentLoaded", () => {
     const ui = new UI();
     const products = new Products();
+    // setup app
+    ui.setupAPP();
 
     // get all products
     products
