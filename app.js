@@ -124,7 +124,20 @@ class UI {
         cartDOM.classList.add("showCart");
         // this function will make it possible to see all items added to the cart
     }
-    setupAPP() {}
+    setupAPP() {
+        cart = Storage.getCart();
+        this.setCartValues(cart);
+        this.populateCart(cart);
+        cartBtn.addEventListener('click',this.showCart)
+        closeCartBtn.addEventListener('click',this.hideCart)
+    }
+    populateCart(cart){
+        cart.forEach(item =>this.addCartItem(item));
+    }
+    hideCart(){
+        cartOverlay.classList.remove("transparentBcg");
+        cartDOM.classList.remove("showCart");
+    }
 }
 // trust yourself that you are typing correctly
 // local storage
@@ -140,6 +153,9 @@ class Storage {
     }
     static saveCart(cart) {
         localStorage.setItem("cart", JSON.stringify(cart));
+    }
+    static getCart(){
+        return localStorage.getItem('cart')?JSON.parse(localStorage.getItem('cart')):[]
     }
 }
 
